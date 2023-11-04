@@ -1,0 +1,179 @@
+<div class="align-items-center justify-content-center mt-4">
+    <form [formGroup]="form">
+        <div>
+            <div class="row col-md-6 offset-3">
+                <h3 class="text-center">Setup Grow Box System</h3>
+                <div *ngIf="errorMessage" class="alert alert-danger form-text text-center">
+                    {{errorMessage}}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-3 offset-3">
+                <div class="form-field mb-3">
+                    <label class="form-label">Login ID: </label>
+                    <input class="form-control" name="username" formControlName="username" required
+                        data-bs-toggle="tooltip" title="The ID Used as field for login">
+
+                    <div *ngIf="username?.invalid && (username?.dirty || username?.touched)"
+                        class="alert alert-danger form-text">
+                        <div *ngIf="username?.errors?.['required'] || username?.errors?.['username']">
+                            Login Id Credential is required.
+                        </div>
+                        <div *ngIf="username?.errors?.['minlength']">
+                            Login Id Credential must be at least 4 characters long.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-field mb-3">
+                    <label class="form-label">Current Password</label>
+                    <input type="password" class="form-control" name="oldPassword" formControlName="oldPassword"
+                        required>
+                    <div *ngIf="oldPassword?.invalid && (oldPassword?.dirty || oldPassword?.touched)"
+                        class="alert alert-danger form-text">
+                        <div *ngIf="oldPassword?.errors?.['required'] || oldPassword?.errors?.['newPassword']">
+                            Current Password is required.
+                        </div>
+                        <div *ngIf="oldPassword?.errors?.['minlength']">
+                            Current Password must be at least 8 characters long.
+                        </div>
+                        <div *ngIf="oldPassword?.errors?.['pattern']">
+                            Current Password must be at least 8 characters long comprised from with lower/upper
+                            letters,
+                            digits and
+                            special signs.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-field mb-3">
+                    <label class="form-label">New Password</label>
+
+                    <input type="password" class="form-control" name="newPassword" formControlName="newPassword"
+                        required>
+                    <div *ngIf="newPassword?.invalid && (newPassword?.dirty || newPassword?.touched)"
+                        class="alert alert-danger form-text">
+                        <div *ngIf="newPassword?.errors?.['required'] || newPassword?.errors?.['newPassword']">
+                            New Password is required.
+                        </div>
+                        <div *ngIf="newPassword?.errors?.['minlength']">
+                            New Password must be at least 8 characters long.
+                        </div>
+                        <div *ngIf="newPassword?.errors?.['pattern']">
+                            Password must be at least 8 characters long comprised from with lower/upper letters,
+                            digits
+                            and
+                            special signs.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div>
+                    <div class="form-field mb-3">
+                        <label class="form-label">Wi-Fi Connection:</label>
+                        <div class="form-field  mb-3">
+                            <select class="form-control" formControlName="connections" data-bs-toggle="tooltip"
+                                title="How to connect to Grow Box UI">
+                                <option [ngValue]="null" disabled>Select Access Point</option>
+                                <option *ngFor="let c of connections" [ngValue]="c">
+                                    {{ c.description }}
+                                </option>
+                            </select>
+                            <div class="alert alert-danger form-text"
+                                *ngIf="form.get('connections')!.invalid && form.dirty">
+                                Please Select Grow Box Connection Type
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-field mb-3">
+                        <label class="form-label">Wi-Fi Network Name: </label>
+                        <input class="form-control" name="email" formControlName="ssid" required
+                            data-bs-toggle="tooltip" title="SSID/WIFI Name">
+
+                        <div *ngIf="ssid?.invalid && (ssid?.dirty || ssid?.touched)"
+                            class="alert alert-danger form-text">
+                            <div *ngIf="ssid?.errors?.['required'] || ssid?.errors?.['ssid']">
+                                SSID is required.
+                            </div>
+                            <div *ngIf="ssid?.errors?.['minlength']">
+                                SSID must be at least 4 characters long.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-field mb-3">
+                        <label class="form-label">Wi-Fi Network Passwords:</label>
+                        <input class="form-control" name="accessPointPassword" formControlName="accessPointPassword"
+                            type="password" required data-bs-toggle="tooltip" title="Access point Password">
+                        <div *ngIf="accessPointPassword?.invalid && (accessPointPassword?.dirty || accessPointPassword?.touched)"
+                            class="alert alert-danger form-text">
+                            <div *ngIf="accessPointPassword?.errors?.['required']">
+                                Password is required.
+                            </div>
+                            <div *ngIf="accessPointPassword?.errors?.['minlength']">
+                                Password must be at least 8 characters long.
+                            </div>
+                            <div *ngIf="accessPointPassword?.errors?.['pattern']">
+                                Password must be at least 8 characters long comprised from with lower/upper letters,
+                                digits
+                                and
+                                special signs.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-field mb-3">
+                        <label class="form-label">IP Address: </label>
+                        <input class="form-control" name="ipAddress" formControlName="ipAddress" required
+                            data-bs-toggle="tooltip" title="Ip Address to use in the Wi-Fi Connection">
+
+                        <div *ngIf="ipAddress?.invalid && (ipAddress?.dirty || ipAddress?.touched)"
+                            class="alert alert-danger form-text">
+                            <div *ngIf="ipAddress?.errors?.['required'] || ipAddress?.errors?.['ipAddress']">
+                                Station IP Address is required.
+                            </div>
+                            <div *ngIf="ipAddress?.errors?.['pattern']">
+                                Ip Address Must be in format xxx.xxx.xxx.xxx
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-field mb-3">
+                        <label class="form-label">Gateway IP: </label>
+                        <input class="form-control" name="gateway" formControlName="gateway" required
+                            data-bs-toggle="tooltip" title="Station Gateway Address">
+
+                        <div *ngIf="gateway?.invalid && (gateway?.dirty || gateway?.touched)"
+                            class="alert alert-danger form-text">
+                            <div *ngIf="gateway?.errors?.['required'] || gateway?.errors?.['gateway']">
+                                Station Gateway Address is required.
+                            </div>
+                            <div *ngIf="gateway?.errors?.['pattern']">
+                                Gateway Address Must be in format xxx.xxx.xxx.xxx
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-field mb-3">
+                        <label class="form-label">Subnetmask IP: </label>
+                        <input class="form-control" name="subnetmask" formControlName="subnetmask" required
+                            data-bs-toggle="tooltip" title="Station Subnetmask Address">
+
+                        <div *ngIf="subnetmask?.invalid && (subnetmask?.dirty || subnetmask?.touched)"
+                            class="alert alert-danger form-text">
+                            <div *ngIf="subnetmask?.errors?.['required'] || subnetmask?.errors?.['subnetmask']">
+                                Statin Subnetmask Address is Required.
+                            </div>
+                            <div *ngIf="subnetmask?.errors?.['pattern']">
+                                Subnetmask Address Must be in format xxx.xxx.xxx.xxx
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-12 text-center mt-4">
+                <button class="btn btn-primary col-md-4 offset-4 mb-2" (click)="setup()">Setup</button>
+            </div>
+        </div>
+
+    </form>
+</div>
