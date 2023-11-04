@@ -12,7 +12,7 @@ import { SetupAccountComponent } from './setup-account/setup-account.component';
 
 @NgModule({
     declarations: [
-        SideNavigationComponent,
+        // SideNavigationComponent,
         ControlComponent,
         DashboardComponent,
         // LogsComponent,
@@ -26,7 +26,7 @@ import { SetupAccountComponent } from './setup-account/setup-account.component';
         ReactiveFormsModule
     ],
     exports: [
-        SideNavigationComponent,
+        // SideNavigationComponent,
         DashboardComponent
     ]
 })
