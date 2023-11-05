@@ -11,8 +11,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "./extra-webpack.config.js",
+              "replaceDuplicatePlugins": true
+            },
             "outputPath": "dist/lab_ui_v02",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -32,9 +36,6 @@
               "src/assets/bootstrap.min.js",
               "src/assets/chart.js",
               "src/assets/scripts.js"
-            ],
-            "allowedCommonJsDependencies": [
-              "moment"
             ]
           },
           "configurations": {

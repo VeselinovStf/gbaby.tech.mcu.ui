@@ -31,7 +31,7 @@ const rootDirectoryPath = './dist'; // Replace with the actual root directory pa
 const assetsPrefix = '/%20/';
 const assetsPrefixFix = '';
 
-readFilesRecursively(rootDirectoryPath, assetsPrefix, assetsPrefixFix);
+//readFilesRecursively(rootDirectoryPath, assetsPrefix, assetsPrefixFix);
 
 const scriptsPrefix = 'assets/';
 const scriptsPrefixFix = '';

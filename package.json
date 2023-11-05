@@ -4,10 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --aot --build-optimizer --optimization --progress  --vendor-chunk  --named-chunks --output-hashing none",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prod": "ng build --aot --build-optimizer --optimization --progress --output-hashing none && node ./productionClear.js"
+    "prod": "ng build --aot --build-optimizer --optimization --progress --vendor-chunk  --named-chunks --output-hashing none   && node ./productionClear.js"
   },
   "private": true,
   "dependencies": {
@@ -19,12 +19,15 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "html-webpack-plugin": "^5.5.3",
     "moment": "^2.29.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "workbox-webpack-plugin": "^7.0.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^16.0.1",
     "@angular-devkit/build-angular": "^16.2.4",
     "@angular/cli": "^16.2.4",
     "@angular/compiler-cli": "^16.2.0",
@@ -35,6 +38,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "mini-css-extract-plugin": "^2.7.6",
     "typescript": "~5.1.3"
   }
 }

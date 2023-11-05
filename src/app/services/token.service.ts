@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as moment from 'moment'
-import { Buffer } from 'buffer/';
+// import * as moment from 'moment'
+// import { Buffer } from 'buffer/';
 
 @Injectable({
     providedIn: 'root'
@@ -10,11 +10,13 @@ export class TokenService {
     constructor() { }
 
     base64ToString(encoded: string): any {
-        return Buffer.from(encoded, "base64").toString();
+        return encoded;
+        //return Buffer.from(encoded, "base64").toString();
     }
 
     isTokenExpired(): boolean {
-        return !moment().isBefore(this.getTokenExpiration())
+        return false;
+        //return !moment().isBefore(this.getTokenExpiration())
     }
 
     getToken() {
@@ -40,21 +42,21 @@ export class TokenService {
 
         let payload = JSON.parse(this.base64ToString(authResult.idToken.split('.')[1]));
 
-        const expiresIn = moment().add(payload.exp, 'second');
+       // const expiresIn = moment().add(payload.exp, 'second');
 
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('refresh_token', authResult.refreshToken);
         localStorage.setItem('user_id', payload.data1);
-        localStorage.setItem("expires_at", JSON.stringify(expiresIn.valueOf()));
+        localStorage.setItem("expires_at", JSON.stringify(50));
     }
 
     private getTokenExpiration() {
         const expiration = localStorage.getItem("expires_at");
         if (expiration == null) {
-            return moment(new Date())
+            return new Date()
         }
         const expiresAt = JSON.parse(expiration == null ? new Date().toString() : expiration); // TODO ? DATE
 
-        return moment(expiresAt);
+        return new Date();
     }
 }
