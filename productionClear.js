@@ -31,17 +31,17 @@ const rootDirectoryPath = './dist'; // Replace with the actual root directory pa
 const assetsPrefix = '/%20/';
 const assetsPrefixFix = '';
 
-readFilesRecursively(rootDirectoryPath, assetsPrefix, assetsPrefixFix);
+//readFilesRecursively(rootDirectoryPath, assetsPrefix, assetsPrefixFix);
 
 const scriptsPrefix = 'assets/';
 const scriptsPrefixFix = '';
 
 readFilesRecursively(rootDirectoryPath, scriptsPrefix, scriptsPrefixFix);
 
-const esp_data_ui_folder = "F:/IOT_STUFF/_PROJECTS/HomeAutomations/LAB01/data/ui";
+const esp_data_ui_folder = "F:/IOT_STUFF/_PROJECTS/gbaby/gbaby.tech.mcu/data/ui";
 
-const ui_assets_source = "F:/IOT_STUFF/_PROJECTS/HomeAutomations/lab_ui_v02/dist/lab_ui_v02/assets";
-const ui_html_source = "F:/IOT_STUFF/_PROJECTS/HomeAutomations/lab_ui_v02/dist/lab_ui_v02";
+const ui_assets_source = "F:/IOT_STUFF/_PROJECTS/gbaby/gbaby.tech.mcu.ui/dist/lab_ui_v02/assets";
+const ui_html_source = "F:/IOT_STUFF/_PROJECTS/gbaby/gbaby.tech.mcu.ui/dist/lab_ui_v02";
 
 function removeInDir(directoryPath) {
     fs.readdir(directoryPath, (err, files) => {
@@ -102,9 +102,9 @@ function copyFiles(source, destination) {
                 }
             });
 
-            
 
-           
+
+
         });
     });
 

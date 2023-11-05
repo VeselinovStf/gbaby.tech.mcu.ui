@@ -11,8 +11,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "./extra-webpack.config.js",
+              "replaceDuplicatePlugins": true
+            },
             "outputPath": "dist/lab_ui_v02",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -24,8 +28,9 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
+            "styles": [          
               "src/styles.css"
+              
             ],
             "scripts": [
               "src/assets/jquery-3.2.1.slim.min.js",
@@ -51,7 +56,13 @@
                   "maximumError": "2mb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "buildOptimizer": true,
+              "optimization": true,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": false,
+              "namedChunks": true
             },
             "development": {
               "buildOptimizer": false,
